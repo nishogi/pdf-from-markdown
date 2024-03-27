@@ -1,0 +1,31 @@
+---
+title: "PDF Generation with Pandoc and GitHub Actions"
+author: "Nicolas Rocq"
+date:
+subtitle: "How to generate good looking PDFs from Markdown files using Pandoc and how to automate the process with GitHub Actions"
+geometry: "left=2.54cm,right=2.54cm,top=1.91cm,bottom=1.91cm"
+titlepage: true
+titlepage-color: "FFFFFF"
+titlepage-text-color: "000000"
+titlepage-rule-color: "CCCCCC"
+titlepage-rule-height: 4
+titlepage-logo: "assets/pandoc.png"
+logo-width: 100pt
+page-background:
+page-background-opacity:
+links-as-notes: true
+lot: false
+lof: false
+listings-disable-line-numbers: true
+listings-no-page-break: false
+disable-header-and-footer: false
+header-left:
+header-center:
+header-right:
+footer-left: "© Nicolas Rocq"
+footer-center: "2024"
+footer-right:
+subparagraph: true
+lang: en-US
+toc-own-page: true
+---
