@@ -3,17 +3,17 @@ name: Build and Push PDF Document
 on:
   push:
     paths:
-      - '.github/workflows/*'
-      - 'md/*'
+      - ".github/workflows/*"
+      - "docs/md/*"
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    container: 
+
+    container:
       image: knsit/pandoc:latest
       options: --user root
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -21,18 +21,18 @@ jobs:
       - name: Build PDF
         run: |
           cd "$SOURCE_DIR"
-          pandoc -s -o "$DEST_FILE_NAME" -f "$SOURCE_FORMAT" --data-dir="$DATA_DIR" --template "$TEMPLATE" --toc --listings --columns=50 --number-sections --dpi=300 --pdf-engine xelatex -M date="$(date +%Y-%m-%d)" md/HEADER.YAML md/*.md
+          pandoc -s -o "$DEST_FILE_NAME" -f "$SOURCE_FORMAT" --data-dir="$DATA_DIR" --template "$TEMPLATE" --toc --listings --columns=50 --number-sections --dpi=300 --pdf-engine xelatex -M date="$(date +%Y-%m-%d)" docs/md/HEADER.YAML docs/md/*.md
         env:
-          DEST_FILE_NAME: "artifact.pdf"
+          DEST_FILE_NAME: "docs/artifact.pdf"
           TEMPLATE: "eisvogel.tex"
           SOURCE_FORMAT: markdown_strict+backtick_code_blocks+pipe_tables+auto_identifiers+yaml_metadata_block+implicit_figures+table_captions+footnotes+smart+escaped_line_breaks+header_attributes
-          DATA_DIR: pandoc
+          DATA_DIR: docs/pandoc
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: artifact
-          path: artifact.pdf
+          path: docs/artifact.pdf
 
   push_pdf:
     needs: build
@@ -47,12 +47,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: artifact
-          path: .
+          path: docs/.
 
       - name: Commit PDF
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add artifact.pdf
+          git add docs/artifact.pdf
           git commit -m "Add or update PDF" || echo "No changes to commit"
           git push

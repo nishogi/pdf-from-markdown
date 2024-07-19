@@ -9,7 +9,7 @@ titlepage-color: "FFFFFF"
 titlepage-text-color: "000000"
 titlepage-rule-color: "CCCCCC"
 titlepage-rule-height: 4
-titlepage-logo: "assets/pandoc.png"
+titlepage-logo: "docs/assets/pandoc.png"
 logo-width: 100pt
 page-background:
 page-background-opacity:
@@ -29,3 +29,4 @@ subparagraph: true
 lang: en-US
 toc-own-page: true
 ---
+
