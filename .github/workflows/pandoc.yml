@@ -54,5 +54,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add docs/artifact.pdf
-          git commit -m "Add or update PDF" || echo "No changes to commit"
+          git commit -m "🤖 Add or update PDF 📄" || echo "No changes to commit"
           git push
